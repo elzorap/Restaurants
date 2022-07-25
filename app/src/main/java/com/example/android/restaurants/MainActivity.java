@@ -22,7 +22,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String API_URL = "https://run.mocky.io/";
     ArrayList<Restaurant> listOfRestaurants;
     public RecyclerView restaurants_recyclerview;
     Toolbar toolbar;
@@ -30,11 +29,19 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setToolbar();
+        setRecyclerView();
+        getRestaurantsResponse();
+    }
+
+    private void setToolbar() {
         toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(this.toolbar);
+    }
+
+    private void setRecyclerView() {
         restaurants_recyclerview = findViewById(R.id.rvRestaurants);
         restaurants_recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        getRestaurantsResponse();
     }
 
     private void getRestaurantsResponse() {
