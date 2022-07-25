@@ -48,13 +48,11 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         Picasso.get().load(restaurant.getImagePath()).into(holder.image);
         holder.name.setText(restaurant.getName());
         holder.description.setText(restaurant.getDescription());
-        holder.itemView.setOnClickListener(new RestaurantsAdapter$$Lambda$0(this, holder, position));
-    }
 
-    /* access modifiers changed from: package-private */
-    public final /* synthetic */ void lambda$onBindViewHolder$0$RestaurantsAdapter(ItemViewHolder holder, int position) {
-        Intent intent = new Intent(holder.itemView.getContext(), RestaurantsDetailes.class);
-        intent.putExtra("restaurant", this.listOfRestaurants.get(position));
-        holder.itemView.getContext().startActivity(intent);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), RestaurantsDetailes.class);
+            intent.putExtra("restaurant", listOfRestaurants.get(position));
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 }
